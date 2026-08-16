@@ -1,2 +1,2 @@
 # SHOORVEERS
-GitHub Repository for Data Ml @ VARCHAS '26
+GitHub Repository for Data ML @ VARCHAS '26

@@ -1,0 +1,18 @@
+# Python cache & environment files
+__pycache__/
+*.py[cod]
+*$py.class
+.ipynb_checkpoints/
+.env
+venv/
+env/
+
+# Raw and processed image datasets (large binary files)
+Inputs/train/
+Inputs/test/
+Outputs/segmented_train/
+Outputs/segmented_test/
+
+# OS generated files
+.DS_Store
+Thumbs.db

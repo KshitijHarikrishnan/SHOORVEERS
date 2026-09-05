@@ -35,9 +35,9 @@
 /predictions
   └── predictions.csv
 /Wildcard Challenges
-  └── WC01
-        ├── WC01.ipynb
-        └── WC01.png
+  └── WC_01
+        ├── WC_01.ipynb
+        └── WC_01.png
 README.md
 requirements.txt
 .gitignore
@@ -119,7 +119,7 @@ The most valuable thing we uncovered was catching how misleading raw accuracy is
 
 | Challenge | Attempted? (Y/N) | Where to find it in the repo |
 | --- | --- | --- |
-| Best Visualization | Y | `/Wildcard Challenges/WC01/` — co-occurrence heatmap showing how often patients with one condition also present with another |
+| Best Visualization | Y | `/Wildcard Challenges/WC_01/` — co-occurrence heatmap showing how often patients with one condition also present with another |
 | Most Interpretable Model |  |  |
 | Fastest Inference Time |  |  |
 | Best Handling of Messy/Incomplete Data |  |  |

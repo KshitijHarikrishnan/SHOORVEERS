@@ -35,9 +35,9 @@
 /predictions
   └── predictions.csv
 /Wildcard Challenges
-  └── WC_01
-        ├── WC_01.ipynb
-        └── WC_01.png
+  └── WC01
+        ├── WC01.ipynb
+        └── WC01.png
 README.md
 requirements.txt
 .gitignore
@@ -90,15 +90,36 @@ We trained one binary classifier per condition (5 independent binary-relevance m
 
 Predictions file: submitted as `predictions.csv` inside `/predictions`, containing one probability column per condition (Atelectasis, Effusion, Infiltration, Nodule, Pneumothorax) alongside the test set's image ID column, per the format specified in the problem brief.
 
+## How to Reproduce
+
+1. Clone the repository and install dependencies:
+
+2. Place the raw `train/` and `test/` image folders (not included in this repo due to size) inside `code/Inputs/` — see `README.md` for the expected folder layout.
+3. Run the notebooks in order:
+   - `code/01_eda.ipynb` — exploratory analysis
+   - `code/02_preprocessing.ipynb` — lung segmentation
+   - `code/03_feature_extraction.ipynb` — feature engineering (produces `train_features.csv`, `test_features.csv`)
+   - `code/04_modelling.ipynb` — model training, calibration, threshold tuning, and final `predictions.csv` generation
+4. All reported metrics in Section 6 are reproduced by `04_modelling.ipynb` using a fixed random seed (`random_state=42`).
+
+
 ## 7. Key Insight
 
 The most valuable thing we uncovered was catching how misleading raw accuracy is under class imbalance, and using that to fix our own evaluation process. Early on, a fixed 0.5 threshold made every condition's model appear to predict "negative" almost universally, producing deceptively high raw accuracy (e.g., ~94% for Nodule) while the model was unable to actually distinguish positive cases — a flat 50% balanced accuracy exposed this immediately. Tuning per-condition thresholds against balanced accuracy revealed the models were learning real, if modest, signal all along (AUROC 0.57–0.65), just at probability ranges far below 0.5 given how rare each condition is. This taught us that for imbalanced medical screening tasks, the choice of *evaluation threshold* can matter as much as the choice of model — a well-performing model can look broken, or a broken model can look excellent, purely based on how you choose to threshold and which metric you headline.
+
+## Limitations & Future Work
+
+- **Nodule detection remains weak** (AUROC 0.565) even after adding blob-detection features specifically targeted at this condition, suggesting the bottleneck may be segmentation precision or the limited number of positive training examples rather than missing feature types.
+- **Per-condition classification thresholds were tuned on a single train/validation split** rather than via cross-validation, so the exact optimal thresholds reported may not generalize perfectly to the held-out test set.
+- **Lung segmentation uses a fixed Otsu-threshold approach**, which occasionally produced degenerate regions (leading to the 49 training and 34 test images requiring NaN handling) — a more adaptive segmentation method (e.g., region-growing or contour-based refinement) could reduce these edge cases.
+- **Infiltration and Pneumothorax showed flat, non-specific feature importance**, indicating our current feature set captures some signal but no single strongly discriminative pattern for these conditions — future iterations could explore multi-scale GLCM (varying distance/angle parameters) or wavelet-based texture features.
+- With more time, we would explore simple ensembling (averaging predictions across our three model types) rather than selecting a single winning model per condition, which often improves robustness at minimal extra cost.
 
 ## 8. Wildcard Challenges Attempted
 
 | Challenge | Attempted? (Y/N) | Where to find it in the repo |
 | --- | --- | --- |
-| Best Visualization | Y | `/Wildcard Challenges/WC_01/` — co-occurrence heatmap showing how often patients with one condition also present with another |
+| Best Visualization | Y | `/Wildcard Challenges/WC01/` — co-occurrence heatmap showing how often patients with one condition also present with another |
 | Most Interpretable Model |  |  |
 | Fastest Inference Time |  |  |
 | Best Handling of Messy/Incomplete Data |  |  |

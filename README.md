@@ -26,6 +26,9 @@
         ├── baseline_vs_blob_comparison.csv
         ├── validation_accuracy_vs_auroc.csv
         └── validation_metrics_percentage.csv
+  └── /Inputs
+        ├── train
+        └── test
   └── /xray_images
         ├── Atelectasis_xray.png
         ├── Effusion_xray.png
@@ -92,8 +95,12 @@ Predictions file: submitted as `predictions.csv` inside `/predictions`, containi
 
 ## How to Reproduce
 
-1. Clone the repository and install dependencies:
+**Before running any notebooks:** place the officially provided dataset folders as follows, relative to the `code/` directory:
 
+`code/Inputs/train` <-- the 4,484 training PNG images provided by organizers
+`code/Inputs/test` <-- the 1,122 test PNG images provided by organizers
+
+1. Clone the repository and install dependencies: `pip install -r requirements.txt`
 2. Place the raw `train/` and `test/` image folders (not included in this repo due to size) inside `code/Inputs/` — see `README.md` for the expected folder layout.
 3. Run the notebooks in order:
    - `code/01_eda.ipynb` — exploratory analysis

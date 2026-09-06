@@ -6,7 +6,7 @@
 | --- | --- |
 | Team Name | SHOORVEERS |
 | Team Members (4) | 1. KSHITIJ HARIKRISHNAN  2. MALLOBHA SAI MOURYA  3. JAKKA LOKESH REDDY  4. DASARI KARTHIK REDDY |
-| Team Lead (contact) | KSHITIJ HARIKRISHNAN , (PhNo.) - 9676249876 |
+| Team Lead (contact) | KSHITIJ HARIKRISHNAN , (Email) - kshitijharikrishnan@gmail.com |
 | GitHub Repository Link | https://github.com/KshitijHarikrishnan/SHOORVEERS |
 
 ## 2. Repository Structure

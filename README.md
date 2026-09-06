@@ -17,6 +17,7 @@
   ├── 02_preprocessing.ipynb
   ├── 03_feature_extraction.ipynb
   ├── 04_modelling.ipynb
+  ├── train_labels.csv
   └── /Outputs
         ├── test_features.csv
         ├── train_features.csv
@@ -27,8 +28,8 @@
         ├── validation_accuracy_vs_auroc.csv
         └── validation_metrics_percentage.csv
   └── /Inputs
-        ├── train
-        └── test
+        ├── train (need to import)
+        └── test  (need to import)
   └── /xray_images
         ├── Atelectasis_xray.png
         ├── Effusion_xray.png
@@ -54,7 +55,7 @@ The task is to analyze chest X-ray images and predict the occurence of five cond
 
 ## 4. Exploratory Data Analysis (EDA)
 
-Our EDA (see `01_eda.ipynb`) clarly shows significant class imbalance across all five conditions, with each condition positive in roughly 5-15% of training images — Nodule and Pneumothorax were the rarest, Atelectasis and Infiltration relatively more common. This imbalance shaped every downstream decision: we used `class_weight='balanced'` during model training, avoided raw accuracy as a primary metric (a naive "always predict negative" model would score 90%+ "accuracy" on rare conditions while learning nothing), and ultimately tuned per-condition classification thresholds rather than using a fixed 0.5 cutoff.
+Our EDA (see `01_eda.ipynb`) clearly shows significant class imbalance across all five conditions, with each condition positive in roughly 5-15% of training images — Nodule and Pneumothorax were the rarest, Atelectasis and Infiltration relatively more common. This imbalance shaped every downstream decision: we used `class_weight='balanced'` during model training, avoided raw accuracy as a primary metric (a naive "always predict negative" model would score 90%+ "accuracy" on rare conditions while learning nothing), and ultimately tuned per-condition classification thresholds rather than using a fixed 0.5 cutoff.
 
 We also found a small number of images (49 of 4,484 merged training records, and 34 of 1,122 test images) produced missing (NaN) feature values, traced to degenerate image regions — patches of near-uniform pixel intensity after lung segmentation where statistical measures like skewness and kurtosis are mathematically undefined. For the training set we dropped these rows (a small, acceptable loss); for the test set, where every image requires a prediction, we imputed using training-set medians to avoid leaking test-set information into our own preprocessing.
 

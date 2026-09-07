@@ -84,13 +84,15 @@ We trained one binary classifier per condition (5 independent binary-relevance m
 
 **Per-condition breakdown** (validation set):
 
-| Condition | Threshold Used | Accuracy | Balanced Accuracy | AUROC |
+A random/majority-class baseline scores AUROC ~ 0.50 by definition and accuracy ~ 85–95% by always predicting negative — our models beat random discrimination on all five conditions despite the DL restriction, with Atelectasis and Effusion showing the strongest signal.
+
+| Condition | Threshold Used | AUROC | Balanced Accuracy | Accuracy_TunedThreshold |
 | --- | --- | --- | --- | --- |
-| Atelectasis | 0.10 | 56.0% | 63.1% | 0.653 |
-| Effusion | 0.10 | 52.0% | 60.9% | 0.638 |
-| Infiltration | 0.15 | 33.8% | 58.1% | 0.589 |
-| Nodule | 0.05 | 19.6% | 53.6% | 0.565 |
-| Pneumothorax | 0.05 | 70.3% | 57.2% | 0.599 |
+| Atelectasis | 0.10 | 0.653 | 63.1% | 56.0% |
+| Effusion | 0.10 | 0.638 | 60.9% | 52.0% |
+| Infiltration | 0.15 | 0.589 | 58.1% | 33.8% |
+| Nodule | 0.05 | 0.565 | 53.6% | 19.6% |
+| Pneumothorax | 0.05 | 0.599 | 57.2% | 70.3% |
 
 Predictions file: submitted as `predictions.csv` inside `/predictions`, containing one probability column per condition (Atelectasis, Effusion, Infiltration, Nodule, Pneumothorax) alongside the test set's image ID column, per the format specified in the problem brief.
 

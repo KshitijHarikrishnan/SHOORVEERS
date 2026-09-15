@@ -28,8 +28,8 @@
         ├── validation_accuracy_vs_auroc.csv
         └── validation_metrics_percentage.csv
   └── /Inputs
-        ├── train (need to import)
-        └── test  (need to import)
+        ├── train
+        └── test
   └── /xray_images
         ├── Atelectasis_xray.png
         ├── Effusion_xray.png

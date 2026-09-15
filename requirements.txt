@@ -10,3 +10,5 @@ seaborn
 shap
 scipy
 jupyter
+tqdm
+ipywidgets

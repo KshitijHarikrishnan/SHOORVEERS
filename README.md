@@ -28,6 +28,7 @@
         ├── validation_accuracy_vs_auroc.csv
         └── validation_metrics_percentage.csv
   └── /Inputs
+        ├── .gitkeep
         ├── train
         └── test
   └── /xray_images

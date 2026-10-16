@@ -131,9 +131,9 @@ The most valuable thing we uncovered was catching how misleading raw accuracy is
 | Challenge | Attempted? (Y/N) | Where to find it in the repo |
 | --- | --- | --- |
 | Best Visualization | Y | `/Wildcard Challenges/WC_01/` — co-occurrence heatmap showing how often patients with one condition also present with another |
-| Most Interpretable Model |  |  |
-| Fastest Inference Time |  |  |
-| Best Handling of Messy/Incomplete Data |  |  |
+| Most Interpretable Model | - | - |
+| Fastest Inference Time | - | - |
+| Best Handling of Messy/Incomplete Data | - | - |
 
 ## 9. Declaration
 
